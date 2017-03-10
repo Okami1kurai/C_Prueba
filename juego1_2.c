@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "entradas_datos.c"
 
 #define BARCO 64
 #define MAR 126
@@ -92,7 +93,7 @@ int representacion_mapa1() {
 }
 
 int representacion_mapa2() {
-  int i, e, ii = 65, ee = 0, l= 1;x
+  int i, e, ii = 65, ee = 0, l= 1;
 
   ee = x + ii;
   printf("\n\n Mapa2 \n\n");
