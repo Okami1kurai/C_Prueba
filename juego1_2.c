@@ -129,7 +129,7 @@ int ubicar_barco() {
       entrada_letra(&iii);
 
       printf("Segundo el numero\t");
-      entrada_numero(&f);
+      entrada_numero(&f,x);
 
       printf("iii = %d f = %d\n",iii,f);
 
@@ -161,7 +161,7 @@ int atacar(int player) {
   entrada_letra(&ii);
 
   printf("Segundo el numero\t");
-  entrada_numero(&iii);
+  entrada_numero(&iii,x);
 
   if(player == 1)
     o = mapa1[ii][iii];
