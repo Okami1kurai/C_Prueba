@@ -36,7 +36,7 @@ int get_char() {
   return l;
 }
 
-int entrada_numero(int *i) {
+int entrada_numero(int *i, int x) {
   int val;
   get_num(&val);
   while(val <= 0 || val > x) {
