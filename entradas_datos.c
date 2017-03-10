@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-
 int error() {
   printf("Respuesta no valida, vuelva a intentarlo\n");
   return 0;
@@ -40,7 +36,6 @@ int get_num(int *_p) {
   *_p = atoi(num);
   return *_p;
 }
-
 
 int entrada_letra(int *e, int x){
   int val;
