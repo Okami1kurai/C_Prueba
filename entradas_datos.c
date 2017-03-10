@@ -1,50 +1,10 @@
-int entrada_letra(int *e){
-  int val;
-  while(1){
-    val = toupper(get_char());
-    // hacer val -= 1 es lo mismo que val = val - 1
-    if(val >= 65 && val <= 90)
-      val -= 64;
-    else
-      error();
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
-    if(val <= x) 
-       {
-        break;
-        val--;
-       }
-  }
-  // vacea el buffer si se intro dujo mas de un caracteres
-  *e = val;
-  return val;
-}
-
-int get_num(int *_p) {
-  int length = 5;
-  char num[length];
-
-  strget(num, length);
-  *_p = atoi(num);
-  return *_p;
-}
-
-int get_char() {
-  int l, l2;
-  l = getc(stdin);
-  while(l2 != EOF && l2 != 10)
-    l2 = getc(stdin);
-  return l;
-}
-
-int entrada_numero(int *i, int x) {
-  int val;
-  get_num(&val);
-  while(val <= 0 || val > x) {
-    error();
-    get_num(&val);
-  }
-  *i = val;
-  return val;
+int error() {
+  printf("Respuesta no valida, vuelva a intentarlo\n");
+  return 0;
 }
 
 int strget(char *buffer, int max_length) {
@@ -62,4 +22,53 @@ int strget(char *buffer, int max_length) {
       c = getc(stdin);
   }
   return i;
+}
+
+int get_char() {
+  int l, l2;
+  l = getc(stdin);
+  while(l2 != EOF && l2 != 10)
+    l2 = getc(stdin);
+  return l;
+}
+
+int get_num(int *_p) {
+  int length = 5;
+  char num[length];
+
+  strget(num, length);
+  *_p = atoi(num);
+  return *_p;
+}
+
+
+int entrada_letra(int *e, int x){
+  int val;
+  while(1){
+    val = toupper(get_char());
+    // hacer val -= 1 es lo mismo que val = val - 1
+    if(val >= 65 && val <= 90)
+      val -= 64;
+    else
+      error();
+
+    if(val <= x) {
+      break;
+      val--;
+    }
+  }
+  // vacea el buffer si se intro dujo mas de un caracteres
+  *e = val;
+  return val;
+}
+
+int entrada_numero(int *i, int x) {
+  int val;
+  get_num(&val);
+  while(val <= 0 || val > x) {
+    error();
+    get_num(&val);
+  }
+  *i = val;
+  return val;
 }
