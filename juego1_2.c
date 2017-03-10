@@ -127,10 +127,10 @@ int ubicar_barco() {
     for(ii=1; ii <= n_barco1; ii++) { /* aqui no se requiere diferencia de n_barco ya que la cantidad no varia en este punto*/
       printf("Introdusca las cordenadas del %d° barco(A,1)\n", ii);
       printf("Primero la letra\t");
-      entrada_letra(&iii);
+      entrada_letra(&iii, x);
 
       printf("Segundo el numero\t");
-      entrada_numero(&f,x);
+      entrada_numero(&f, x);
 
       printf("iii = %d f = %d\n",iii,f);
 
@@ -159,10 +159,10 @@ int ubicar_barco() {
 int atacar(int player) {
   int ii, iii, o, acierto = 0;
   printf("Primero la letra\t");
-  entrada_letra(&ii);
+  entrada_letra(&ii, x);
 
   printf("Segundo el numero\t");
-  entrada_numero(&iii,x);
+  entrada_numero(&iii, x);
 
   if(player == 1)
     o = mapa1[ii][iii];
