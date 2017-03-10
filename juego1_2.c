@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-/*chao mundo*/
+
 #define BARCO 64
 #define MAR 126
 
@@ -37,6 +37,7 @@ int get_num(int *_p) {
 int get_char() {
   int l, l2;
   l = getc(stdin);
+  l2 = l;
   while(l2 != EOF && l2 != 10)
     l2 = getc(stdin);
   return l;
@@ -57,11 +58,7 @@ int entrada_letra(int *e){
     else
       error();
 
-    if(val <= x) 
-       {
-        break;
-        val--;
-       }
+    if(val <= x) break;
   }
   // vacea el buffer si se intro dujo mas de un caracteres
   *e = val;
@@ -79,7 +76,7 @@ int entrada_numero(int *i) {
   return val;
 }
 
-int N_jugador(void) {
+int N_jugador() {
   int i = 0;
   printf("\n¿Con quien desea jugar?\n\n");
   printf("Si desea jugar contra la computadora presione 1\n");
@@ -102,7 +99,7 @@ int N_jugador(void) {
   return 0;
 }
 
-int datos_mapa(void) {
+int datos_mapa() {
   int ae, ai;
   printf("\n¿cuantas filas desea que tenga su juego?(min 3, max 20) \t");
   get_num(&x);
@@ -132,7 +129,7 @@ int datos_mapa(void) {
   return 0;
 }
 
-int representacion_mapa1(void) {
+int representacion_mapa1() {
   int i, e, ii = 65, ee = 0, l= 1;
 
   ee = x + ii;
@@ -140,7 +137,7 @@ int representacion_mapa1(void) {
   printf("\n\n Mapa1 \n\n");
   printf("    ");
 
-  for(ii; ii < ee; ii++) /*hubica letras*/
+  for(; ii < ee; ii++) /*hubica letras*/
     printf("%c   ",ii );
 
 
@@ -162,14 +159,14 @@ int representacion_mapa1(void) {
   return 0;
 }
 
-int representacion_mapa2(void) {
-  int i, e, ii = 65, ee = 0, l= 1;
+int representacion_mapa2() {
+  int i, e, ii = 65, ee = 0, l= 1;x
 
   ee = x + ii;
   printf("\n\n Mapa2 \n\n");
   printf("    ");
 
-  for(ii; ii < ee; ii++) /*hubica letras*/
+  for(; ii < ee; ii++) /*hubica letras*/
     printf("%c   ",ii );
 
   for(e=0; e < y; e++) { /*Hubica letra y numero*/
@@ -189,12 +186,12 @@ int representacion_mapa2(void) {
   return 0;
 }
 
-int ubicar_barco(void) { //probloema
-  int i, ii = 0, iii = 0, f = 0, ff;
-  
-  for(i=1; i <= n_jugador;ii++) {
+int ubicar_barco() {
+  int i, ii, iii = 0, f = 0, ff;
+
+  for(i=1; i <= n_jugador; i++) {
     printf("Vamos a ubicar los barcos del %d° jugador, son %d barcos que debe hubicar\n", i, n_barco1);
-    while(ii <= n_barco1) { /* aqui no se requiere diferencia de n_barco ya que la cantidad no varia en este punto*/
+    for(ii=1; ii <= n_barco1; ii++) { /* aqui no se requiere diferencia de n_barco ya que la cantidad no varia en este punto*/
       printf("Introdusca las cordenadas del %d° barco(A,1)\n", ii);
       printf("Primero la letra\t");
       entrada_letra(&iii);
@@ -204,8 +201,7 @@ int ubicar_barco(void) { //probloema
 
       printf("iii = %d f = %d\n",iii,f);
 
-      f--; // aunque pienso que podria solo ser f--;
-      
+      f--;
       if(i == 1) {
         mapa1[iii][f] = BARCO;
         representacion_mapa1();
@@ -213,7 +209,6 @@ int ubicar_barco(void) { //probloema
         mapa2[iii][f] = BARCO;
         representacion_mapa2();
       }
-      // aunque pienso que podria solo ser ii++;
 
       iii = 0;
       f = 0;
@@ -223,7 +218,6 @@ int ubicar_barco(void) { //probloema
     ii = 1;
     iii = 0;
     f = 0;
-    i++;
   }
 
   return 0;
@@ -247,9 +241,9 @@ int atacar(int player) {
   return acierto;
 }
 
-int ataque(void) {
-  int i = 1, ii, iii;
-6 
+int ataque() {
+  int i = 1;
+
   while(1) {
     printf("es turno del %d° jugador\n", i);
     printf("Introdusca cordenada de ataque(A,1)\n");
@@ -261,8 +255,21 @@ int ataque(void) {
       else
         printf("H%d\n", n_barco1);
     } else
-        printf("A fallado\n");
+      printf("A fallado\n");
 
+    if(n_barco1 == 0){ /*elige ganador*/
+      printf("A ganado el 2° jugador\n");
+      break;
+    }
+    if(n_barco2 == 0){ /*elige ganador*/
+      printf("A ganado el 1° jugador\n");
+      break;
+    } 
+    
+    if(i == 1)
+      i++;
+    else if(i == 2)
+      i--;
     n_barco2 = 0; /* esto solo es para evitar que se cree un bucle infinito */
   }
 
@@ -282,4 +289,5 @@ int main() {
   ubicar_barco();
   representacion_mapa1();
   ataque();
+  return EXIT_SUCCESS;
 }
