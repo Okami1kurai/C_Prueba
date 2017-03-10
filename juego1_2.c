@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-/*hola mundo*/
+/*chao mundo*/
 #define BARCO 64
 #define MAR 126
 
