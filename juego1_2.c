@@ -72,7 +72,6 @@ int representacion_mapa1() {
   for(; ii < ee; ii++) /*hubica letras*/
     printf("%c   ",ii );
 
-
   for(e=0; e < y; e++) { /*Hubica letra y numero*/
     /*Hubica numero*/
     if(l <= 9)
@@ -207,6 +206,10 @@ int ataque() {
 
   return 0;
 }
+int calcular_n_barcos() {
+  int num = (x * y) / 9;
+  return num;
+}
 
 int main() {
   printf("\nBienvenidos a combate naval\n");
@@ -216,8 +219,8 @@ int main() {
   if(n_jugador > 1)
     representacion_mapa2();
 
-  n_barco2 = (x * y)/9;
-  n_barco1 = (x * y)/9;
+  n_barco2 = calcular_n_barcos();
+  n_barco1 = calcular_n_barcos();
   ubicar_barco();
   representacion_mapa1();
   ataque();
